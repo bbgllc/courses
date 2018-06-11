@@ -31,7 +31,7 @@
             border-bottom-width: 2px;
         }
         .home-hero{
-            background-image: url(/img/frontend/homepage-image.jpg);
+            background-image: url(/img/frontend/homepage-image3.png);
             background-color: rgba(0,0,0,1);
             height: 350px;
             min-height: 350px;
@@ -49,6 +49,10 @@
             height: 100%;
             
         }
+	.btn-orange{
+	    background-color: #FF6600;
+	    border-color: #FF6600;		
+	}
         
         .hero-text{
             padding: 5% 12%;
@@ -85,7 +89,7 @@
                 </p>
                 
                 <p class="leadx mt-5">
-                    <a class="btn btn-warning btn-lg font-weight-bold" href="/register" role="button">
+                    <a class="btn btn-warning btn-orange btn-lg font-weight-bold" href="/register" role="button">
                         {{ __('t.get-started') }}   
                     </a>
                 </p>

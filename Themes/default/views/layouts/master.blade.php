@@ -47,6 +47,9 @@
                 outline: none !important;
                 box-shadow:none !important;
             }
+	.paralsec {
+		background-image: url('/img/frontend/homepage-image3.png');
+	}
         </style>
         <script>
             window.Laravel = <?php echo json_encode([

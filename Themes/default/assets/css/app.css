@@ -8,7 +8,7 @@
 }
 /* Image for Parallax Section */ 
 .paralsec {
-    background-image: url('../img/small-banner.jpg');
+    background-image: url('/img/frontend/homepage-image3.png');
 }
 .paral-title {
     min-height: 100px;
