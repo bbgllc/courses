@@ -47,9 +47,12 @@
                 outline: none !important;
                 box-shadow:none !important;
             }
-	.paralsec {
-		background-image: url('/img/frontend/homepage-image3.jpg');
-	}
+            .paralsec {
+                background-image: url('/img/frontend/homepage-image3.jpg');
+            }
+            .animated-arrow span, .animated-arrow span:before, .animated-arrow span:after {
+                background-color: black;
+            }
         </style>
         <script>
             window.Laravel = <?php echo json_encode([

@@ -3,7 +3,7 @@
         <a id="wsnavtoggle" class="animated-arrow">
             <span></span>
         </a> 
-        <a href="/" class="smallogo">
+        <a href="/" class="smallogo whitebg">
             <img src="{{ config('site_settings.site_logo') }}" alt="">
         </a> 
         <a class="callusicon" href="">
