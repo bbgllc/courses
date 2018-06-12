@@ -43,10 +43,11 @@
                                             <form class="form-inline" @submit.prevent="updatePrice">
                                                 <label class="mr-sm-2" for="inlineFormCustomSelectPref">{{__('t.course-price')}}</label>
                                                 <div class="input-group">
-						    <span class="input-group-addon">$</span>
-						     <input class="form-control mr-3" v-model="course.price">
-						  </div>
+                                                    <span class="input-group-addon">$</span>
+                                                    <input class="form-control mr-3" v-model="course.price">
+                                                </div>
                                                 <button type="submit" class="btn btn-info">{{__('t.save')}}</button>
+                                                
                                             </form>
                                     
                                             <hr />
@@ -122,6 +123,7 @@
                                     </div>
                                     
                                     
+                                    
                                     <div class="row">
                                         <div class="table-responsive" v-if="savedCoursePrice > 0 && course.approved==1 && course.published==1">
                                             <table class="table table-striped table-sm">
@@ -168,7 +170,38 @@
                                             
                                         </div>
                                     </div>
-                                        
+                                    
+                                    <hr />
+                                    
+                                    <div class="col-12 clearfix" v-if="!showSalesForm">
+                                        <button class="btn btn-info pull-right" :disabled="savedCoursePrice > 0 && course.approved==1 && course.published==1 ? null:'disabled'" @click.prevent="showSalesForm=true">
+                                          On Sale
+                                        </button>
+                                    </div>
+
+                                    <form @submit.prevent="createSale()" class="form-horizontal" v-if="showSalesForm">
+                                            <div class="form-row">
+                                                <div class="col-6">
+                                                    <label for="code">Discount Percent</label>
+                                                    <input type="number" name="sale_discount" class="form-control" />
+                                                </div>
+                                                
+                                                <div class="col-6">
+                                                    <label for="code">Final Price</label>
+                                                    <input type="number" name="sale_discount" class="form-control"  value="10" disabled/>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-row mt-4">
+                                                <div class="col-12">
+                                                    <span class="pull-right">
+                                                        <a href="#" @click.prevent="showSalesForm=false">{{__('t.cancel')}}</a>
+                                                        <button type="submit" class="btn btn-success">{{__('t.save')}}</button>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                          
+                                    </form>
                                     <vodal :show="showModal" 
                                         animation="flip" 
                                         @hide="showModal=false"
@@ -202,12 +235,6 @@
 				                
 				                </div>
 				            </author-coupons>
-                            
-                            
-                            
-                            
-                            
-                            
                         </div>
                     </div>
                     

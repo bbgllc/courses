@@ -13,6 +13,7 @@
                 coupons: [],
                 saveStatus: null,
                 showCreateForm: false,
+                showSalesForm: false,
                 maxPercent: 100,
                 showModal: false,
                 couponLink: '',

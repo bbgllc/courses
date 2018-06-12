@@ -50,6 +50,7 @@
             .paralsec {
                 background-image: url('/img/frontend/homepage-image3.jpg');
             }
+
             .animated-arrow span, .animated-arrow span:before, .animated-arrow span:after {
                 background-color: black;
             }
