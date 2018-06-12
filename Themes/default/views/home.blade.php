@@ -31,7 +31,7 @@
             border-bottom-width: 2px;
         }
         .home-hero{
-            background-image: url(/img/frontend/homepage-image3.png);
+            background-image: url(/img/frontend/homepage-image3.jpg);
             background-color: rgba(0,0,0,1);
             height: 350px;
             min-height: 350px;

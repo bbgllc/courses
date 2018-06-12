@@ -48,7 +48,7 @@
                 box-shadow:none !important;
             }
 	.paralsec {
-		background-image: url('/img/frontend/homepage-image3.png');
+		background-image: url('/img/frontend/homepage-image3.jpg');
 	}
         </style>
         <script>
