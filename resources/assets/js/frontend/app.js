@@ -133,7 +133,6 @@ Vue.component('quiz-create', require('./components/author/quiz-create.vue'));
 Vue.component('quiz-question', require('./components/author/quiz-question.vue'));
 Vue.component('quiz-answer-form', require('./components/author/quiz-answer-form.vue'));
 Vue.component('author-coupons', require('./components/author/coupon.vue'));
-
 Vue.component('stars', require('./components/reviews/stars.vue'));
 Vue.component('course-reviews', require('./components/reviews/course-reviews.vue'));
 Vue.component('course-review', require('./components/reviews/course-review.vue'));

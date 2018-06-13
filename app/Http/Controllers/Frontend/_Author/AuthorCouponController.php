@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend\_Author;
 
 use App\Models\Coupon;
 use App\Models\Course;
+use App\Models\Sale;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -18,8 +19,8 @@ class AuthorCouponController extends Controller
 
         $prices = collect(explode(',',config('site_settings.pricelist')));
         
-        
-        return view('_Author.course-pricing', compact('course', 'prices'));
+        $sale = Sale::where('course_id', $course->id)->get()->first();
+        return view('_Author.course-pricing', compact('course', 'prices', 'sale'));
     }
     
     public function fetchCoupons($course)

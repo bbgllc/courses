@@ -179,7 +179,10 @@ Route::group(['middleware' => ['auth:api', 'xss']], function () {
     Route::post('author/course/coupon', 'Frontend\_Author\AuthorCouponController@store');
     Route::put('author/coupon/{id}/activate', 'Frontend\_Author\AuthorCouponController@activate');
     
-    
+    //sales
+    Route::post('author/course/sale', 'Frontend\_Author\AuthorSaleController@store');
+    Route::get('author/course/{id}/sales', 'Frontend\_Author\AuthorSaleController@fetchSales');
+    Route::put('author/sale/{id}/activate', 'Frontend\_Author\AuthorSaleController@activate');
     // Messaging
     
     Route::get('threads', 'Frontend\User\MessagingController@fetchThreads');

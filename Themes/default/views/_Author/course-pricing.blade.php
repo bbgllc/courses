@@ -31,7 +31,7 @@
                             <h4 class="text-info mb-4">{{__('t.pricing-and-coupons')}}</h4>
                             
                             
-                            <author-coupons :course_id="{{$course->id}}" inline-template v-cloak>
+                        <author-coupons :course_id="{{$course->id}}" inline-template v-cloak :dis_per="{{$sale->percent}}">
 				                <div>
 				                    
 				                    <div class="row mb-4">
@@ -172,36 +172,49 @@
                                     </div>
                                     
                                     <hr />
-                                    
-                                    <div class="col-12 clearfix" v-if="!showSalesForm">
-                                        <button class="btn btn-info pull-right" :disabled="savedCoursePrice > 0 && course.approved==1 && course.published==1 ? null:'disabled'" @click.prevent="showSalesForm=true">
-                                          On Sale
-                                        </button>
-                                    </div>
 
-                                    <form @submit.prevent="createSale()" class="form-horizontal" v-if="showSalesForm">
-                                            <div class="form-row">
-                                                <div class="col-6">
-                                                    <label for="code">Discount Percent</label>
-                                                    <input type="number" name="sale_discount" class="form-control" />
-                                                </div>
-                                                
-                                                <div class="col-6">
-                                                    <label for="code">Final Price</label>
-                                                    <input type="number" name="sale_discount" class="form-control"  value="10" disabled/>
+                                    <h5>Sales</h5>
+                                    <form @submit.prevent="createSale()" class="form-horizontal">
+                                        <div class="form-row">
+                                            <div class="col-3">
+                                                <label for="code">Discount Percent</label>
+                                                <input type="text" name="percent" class="form-control" v-model="formSale.percent"/>
+                                            </div>
+                                            
+                                            <div class="col-2">
+                                                <label for="code">Final Price</label>
+                                                <div>
+                                                    <b>
+                                                        @if(config('site_settings.site_currency_format') == 'front')
+                                                            {{config('site_settings.site_currency_symbol')}}@{{(course.price - (course.price * (formSale.percent/100))).toFixed(2) }}
+                                                        @else
+                                                            @{{(course.price - (course.price * (formSale.percent/100))).toFixed(2) }}{{config('site_settings.site_currency_symbol')}} 
+                                                        @endif
+                                                    </b>
                                                 </div>
                                             </div>
 
-                                            <div class="form-row mt-4">
-                                                <div class="col-12">
-                                                    <span class="pull-right">
-                                                        <a href="#" @click.prevent="showSalesForm=false">{{__('t.cancel')}}</a>
-                                                        <button type="submit" class="btn btn-success">{{__('t.save')}}</button>
+                                            <div class="col-2">
+                                                <label for="code">Action</label>
+                                                <div>
+                                                    <span>
+                                                        <button type="submit" class="btn btn-sm btn-primary">{{__('t.save')}}</button>
                                                     </span>
                                                 </div>
                                             </div>
-                                          
+                                            <div class="col-2">
+                                                <label for="code">Status</label>
+                                                <div>
+                                                    <span>
+                                                        <button :class="sales.active ? 'btn btn-sm btn-success':'btn btn-sm btn-danger'" @click.prevent="toggleSaleActive(sales.id, sales.active)">
+                                                                @{{ sales.active ? 'Active' : 'Inactive' }}
+                                                            </button>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </form>
+
                                     <vodal :show="showModal" 
                                         animation="flip" 
                                         @hide="showModal=false"

@@ -11,6 +11,7 @@
             return {
                 course: [],
                 coupons: [],
+                sales: [],
                 saveStatus: null,
                 showCreateForm: false,
                 showSalesForm: false,
@@ -19,6 +20,7 @@
                 couponLink: '',
                 copyStatus: null,
                 savedCoursePrice: 0,
+                savedSalePercent: 0,
                 err: [],
                 
                 form: new Form({
@@ -27,6 +29,12 @@
                     percent: 5,
                     quantity: 1,
                     expires: null
+                }),
+
+                formSale: new Form({
+                    course_id: this.course_id,
+                    percent: this.dis_per,
+                    expires: null,
                 })
             }
                 
@@ -35,10 +43,10 @@
         components: {
             Datepicker,
             vueSlider,
-            Vodal
+            Vodal,
         },
         
-        props: ['course_id'],
+        props: ['course_id', 'dis_per'],
         
         methods: {
             fetchCourse(id){
@@ -65,7 +73,6 @@
                     }) 
             },
             
-            
             fetchCoupons(){
                 return axios.get('/api/author/course/' + this.course_id + '/coupons').then((response) => {
                     this.coupons = response.data.data;
@@ -74,7 +81,31 @@
                     console.log(error);
                 })
             },
+
+            createSale(){
+                this.saveStatus = this.trans('t.saving')+ '...';
+                this.formSale.post('/api/author/course/sale')
+                .then(({data}) => {
+                    this.showSalesForm = false;
+                    this.saveStatus = this.trans('t.saved');
+                        setTimeout(() => {
+                            this.saveStatus = null 
+                        }, 3000);
+                    this.fetchSales();
+                })
+            },
             
+            fetchSales(){
+                return axios.get('/api/author/course/'+ this.course_id + '/sales').then((response) => {
+                    this.sales = response.data;
+                    this.savedSalePercent = this.sales.percent;
+                    console.log(this.savedSalePercent);
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+            }, 
+
             toggleActive(id, status){
                 this.saveStatus = this.trans('t.updating');
                 axios.put('/api/author/coupon/'+id+'/activate',{
@@ -90,6 +121,23 @@
                     console.log(error);
                 })
             },
+
+            toggleSaleActive(id, status){
+                this.saveStatus = this.trans('t.updating');
+                axios.put('/api/author/sale/'+id+'/activate',{
+                    id: id,
+                    status:status
+                }).then((response) => {
+                    this.fetchSales();
+                    this.saveStatus = this.trans('t.status-updated');
+                    setTimeout(() => {
+                       this.saveStatus = null 
+                    }, 3000);
+                }).catch((error) => {
+                    console.log(error);
+                })
+            },
+
             getLink(link){
                 this.showModal=true; 
                 this.couponLink=link;
@@ -124,7 +172,8 @@
 
         mounted(){
             this.fetchCoupons();
-            
+            this.fetchSales();
+
             return axios.get('/api/author/course/'+this.course_id+'/fetchCourse').then( (response) => {
                 this.course = response.data;
                 this.savedCoursePrice = this.course.price;
