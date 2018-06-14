@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use Carbon\Carbon;
+use App\Models\Sale;
 use App\Models\Payment;
 use App\Models\Course;
 use App\Models\Lesson;
@@ -125,12 +126,23 @@ class CourseController extends Controller
             $l->video_path = $l->content->video_path;
         }
         //dd($previews);
-        
+        $sale = Sale::where(['course_id' => $course->id, 'active' => true])->get()->first();
+        $sale_data = [];
+        if(!is_null($sale)){
+            $sale_data = [
+                'sale_percent' => $sale->percent,
+                'course_price' => $course->price,
+                'final_price' => $course->price-($course->price * ($sale->percent/100)),
+            ];
+        }else{
+            $sale_data = null;
+                
+        }
         /* if the user has already enrolled to the course, redirect them to the Dashboard, otherwise send them to the public course page */
         if(auth()->check() && auth()->user()->canAccessCourse($course)){
             return view('courses.course-dashboard', compact('course', 'course_ratings', 'coupon_code', 'recent_questions', 'recent_announcements')); 
         } else {
-            return view('courses.course-show', compact('course', 'course_ratings', 'coupon_code', 'previews'));    
+            return view('courses.course-show', compact('course', 'course_ratings', 'coupon_code', 'previews', 'sale_data'));    
         }
         
 		

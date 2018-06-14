@@ -187,14 +187,12 @@ class Course extends Model
         $coupon = Coupon::where(['sitewide' => true, 'active' => true])
                     ->where('expires', '>=', \Carbon\Carbon::now())
                     ->first();
-        
         if($this->price > 0){
             if(!is_null($coupon)){
                 $price = round($this->price - (($coupon->percent / 100) * $this->price), 1);
                 return $price;
             } else {
-                return $this->price;
-                
+                return $this->price;   
             }
             
             

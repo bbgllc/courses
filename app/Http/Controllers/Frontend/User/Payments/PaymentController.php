@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend\User\Payments;
 use App\Models\Auth\User;
 use App\Models\Coupon;
 use App\Models\Course;
+use App\Models\Sale;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -20,8 +21,13 @@ class PaymentController extends Controller
         if(auth()->user()->canAccessCourse($course)){
             return redirect(route('frontend.course.show', $course));
         }
-        
-        return view('courses.course-checkout', compact('course', 'coupon_code'));   
+        $sale = Sale::where(['course_id' => $course->id, 'active' => true])->get()->first();
+        if(!is_null($sale)){
+            $sale_price = $course->price - ($course->price*($sale->percent/100));
+        }else{
+            $sale_price = null;
+        }
+        return view('courses.course-checkout', compact('course', 'coupon_code', 'sale_price'));   
         
         
     }

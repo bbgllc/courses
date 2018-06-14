@@ -169,6 +169,7 @@
         'settings' => 'Settings',
         'danger-zone' => 'Danger Zone',
         'contact' => 'Contact',
+        'action' => 'Action',
         'about' => 'About',
         'courses-taught-by' => 'Courses taught by :user',
         'my-purchase-history' => 'My purchase history',

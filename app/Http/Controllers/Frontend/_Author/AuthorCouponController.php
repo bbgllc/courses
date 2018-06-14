@@ -20,7 +20,13 @@ class AuthorCouponController extends Controller
         $prices = collect(explode(',',config('site_settings.pricelist')));
         
         $sale = Sale::where('course_id', $course->id)->get()->first();
-        return view('_Author.course-pricing', compact('course', 'prices', 'sale'));
+        $sale_percent = 0;
+        if(!is_null($sale)){
+            $sale_percent = $sale->percent;
+        }else{
+            $sale_percent = 0;
+        }
+        return view('_Author.course-pricing', compact('course', 'prices', 'sale_percent'));
     }
     
     public function fetchCoupons($course)

@@ -157,11 +157,19 @@
                         
                         <div class="card-body">
                             <h4 class="card-title">
-                                <span class="price">{{Gabs::currency_string($course->final_price)}}</span>
+                                @if(!is_null($sale_data) && $course->price > 0 && is_null($global_coupon))
+                                    <span class="price">{{Gabs::currency_string($sale_data['final_price'])}}</span>
+                                    <span class="discount">{{Gabs::currency_string($sale_data['course_price'])}}</span>
+                                    <small class="text-muted pull-right">{{$sale_data['sale_percent']}}% {{ __('t.off') }}</small>
+                                @else
+                                    <span class="price">{{Gabs::currency_string($course->final_price)}}</span>
+                                @endif
+                               
                                 @if(!is_null($global_coupon) && $course->price > 0)
                                     <span class="discount">{{Gabs::currency_string($course->price)}}</span>
                                     <small class="text-muted pull-right">{{ $course->discount_percent}}% {{ __('t.off') }}</small>
                                 @endif
+                                
                             </h4>
                             @if(!is_null($global_coupon))
                                 <p class="text-success text-center">

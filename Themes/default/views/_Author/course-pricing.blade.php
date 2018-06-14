@@ -30,8 +30,8 @@
                         <div class="card-body" style="min-height:250px;">
                             <h4 class="text-info mb-4">{{__('t.pricing-and-coupons')}}</h4>
                             
-                            
-                        <author-coupons :course_id="{{$course->id}}" inline-template v-cloak :dis_per="{{$sale->percent}}">
+                          
+                        <author-coupons :course_id="{{$course->id}}" inline-template v-cloak :dis_per="{{$sale_percent}}">
 				                <div>
 				                    
 				                    <div class="row mb-4">
@@ -49,7 +49,7 @@
                                                 <button type="submit" class="btn btn-info">{{__('t.save')}}</button>
                                                 
                                             </form>
-                                    
+                                            
                                             <hr />
                                     
                                             <div class="col-12 clearfix" v-if="!showCreateForm">
@@ -177,12 +177,12 @@
                                     <form @submit.prevent="createSale()" class="form-horizontal">
                                         <div class="form-row">
                                             <div class="col-3">
-                                                <label for="code">Discount Percent</label>
+                                                <label for="code">{{__('t.discount-percent')}}</label>
                                                 <input type="text" name="percent" class="form-control" v-model="formSale.percent"/>
                                             </div>
                                             
                                             <div class="col-2">
-                                                <label for="code">Final Price</label>
+                                                <label for="code">{{__('t.final-price')}}</label>
                                                 <div>
                                                     <b>
                                                         @if(config('site_settings.site_currency_format') == 'front')
@@ -195,7 +195,7 @@
                                             </div>
 
                                             <div class="col-2">
-                                                <label for="code">Action</label>
+                                                <label for="code">{{__('t.action')}}</label>
                                                 <div>
                                                     <span>
                                                         <button type="submit" class="btn btn-sm btn-primary">{{__('t.save')}}</button>
@@ -203,7 +203,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-2">
-                                                <label for="code">Status</label>
+                                                <label for="code">{{__('t.status')}}</label>
                                                 <div>
                                                     <span>
                                                         <button :class="sales.active ? 'btn btn-sm btn-success':'btn btn-sm btn-danger'" @click.prevent="toggleSaleActive(sales.id, sales.active)">

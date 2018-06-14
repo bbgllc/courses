@@ -10,8 +10,16 @@
     
     
     @include('includes._title_header', ['title' => __('t.checkout')])
-
-    <cart-checkout-form inline-template amount="{{$course->price}}" 
+    @if(!is_null($sale_price))
+        @php
+            $amount = $sale_price;
+        @endphp
+    @else
+        @php
+            $amount = $course->price;
+        @endphp
+    @endif
+    <cart-checkout-form inline-template amount="{{$amount}}" 
         account_balance="{{auth()->user()->account_balance()}}" 
         course="{{$course->id}}" promocode="{{$coupon_code}}" 
         enable_braintree="{{config('site_settings.payment_enable_braintree')}}" v-cloak>
