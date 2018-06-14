@@ -45,6 +45,6 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function(){
     
 });
 
-Route::get('/config-cache', function(){
-	Artisan::call('config:cache');
+Route::get('/migrate', function(){
+	Artisan::call('migrate');
 });
