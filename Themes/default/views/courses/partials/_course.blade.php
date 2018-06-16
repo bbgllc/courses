@@ -52,6 +52,19 @@
 				@endif
 				
     			<span class="pull-right">
+                    @if(!is_null($course->sale) && $course->price >0 && is_null($global_coupon) && $course->sale->active == true)
+                        <span class="final_price">
+                            @php $final_price_sale= $course->price-($course->price * ($course->sale->percent/100)) @endphp
+                            {{ Gabs::currency_string( $final_price_sale) }}
+                        </span>
+                        <span class="discount">
+                            {{ Gabs::currency_string($course->price)}}
+                        </span>
+                    @else
+                        <span class="final_price">
+                            {{ Gabs::currency_string($course->final_price) }}
+                        </span>
+                    @endif
     			    @if(!is_null($global_coupon) && $course->price > 0)
                         <span class="discount">
                             {{ Gabs::currency_string($course->price)}}
@@ -59,9 +72,9 @@
                     @endif
                     &nbsp;
                     
-                    <span class="final_price">
+                    {{-- <span class="final_price">
                         {{ Gabs::currency_string($course->final_price) }}
-                    </span>
+                    </span> --}}
     			    <!--
 					<i class="fa fa-heart myicon-right"></i> <span class="like_count myicon-right strongSpan">22</span>
 					<i class="fa fa-eye myicon-right"></i> <span class="myicon-right strongSpan">2.1k</span>

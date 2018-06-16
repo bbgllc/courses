@@ -69,6 +69,11 @@ class Course extends Model
         return $this->hasMany(Coupon::class);
     }
 
+    public function sale()
+    {
+        return $this->hasOne(Sale::class);
+    }
+
     public function reviews()
     {
         return $this->hasMany(Review::class);

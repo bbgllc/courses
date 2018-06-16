@@ -4,6 +4,7 @@ namespace App\Helpers;
 use Carbon\Carbon;
 use App\Models\Course;
 use App\Models\Coupon;
+use App\Models\Sale;
 use Illuminate\Http\Request;
 use App\Models\Payment as CoursePayment;
 
@@ -61,6 +62,7 @@ class Gabs {
                 $q->where('course_id', $course->id)
                   ->orWhere('sitewide', true);
             })->first();
+        $sale = Sale::where(['course_id' => $course->id, 'active' => true])->get()->first();
         
         $check = 'success';
         
@@ -73,7 +75,16 @@ class Gabs {
             if($sent_amount != $expected_amount){
                 $check = 'error';
             }
-        } else {
+        }elseif(!is_null($sale)){
+            $check = 'success';
+            $expected_amount = (float)($course->price - ($course->price * ($sale->percent/100)));
+            $expected_amount = number_format((int)$expected_amount ,2,'.','');
+            $sent_amount = number_format((int)$request->amount,2,'.','');
+            if($sent_amount != $expected_amount){
+                $check = 'error';
+            }
+        }
+        else {
             if($request->amount != $course->price){
                 $check = 'error';
             }
