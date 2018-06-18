@@ -117,15 +117,20 @@ class Gabs {
             
             if(!is_null($coupon) && $coupon->sitewide == false){
                 $authorEarning = $amountLeft * $promoPercent;
-            } else {
+            }elseif(!is_null($course->sale) && $course->sale->active == true && is_null($coupon) ){
+                $authorEarning = $amountLeft * $organicPercent;
+            }else{
                 $authorEarning = $amountLeft * $organicPercent;
             }
+            
         } else {
             $affiliateEarning = 0;
             
             if(!is_null($coupon && $coupon->sitewide == false)){
                 $authorEarning = $amount * $promoPercent;
-            } else {
+            }elseif(!is_null($course->sale) && $course->sale->active == true && is_null($coupon) ){
+                $authorEarning = $amount * $organicPercent;
+            }else {
                 $authorEarning = $amount * $organicPercent;
             }
             
@@ -141,6 +146,9 @@ class Gabs {
         }
         if(!is_null($coupon)){
             $payment->coupon_id = $coupon->id;
+        }
+        if(!is_null($course->sale)){
+            $payment->sale_id = $course->sale->id;
         }
         $payment->payment_method = $gateway;
         $payment->amount = $amount;
