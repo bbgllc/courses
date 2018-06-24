@@ -12,4 +12,4 @@ yarn-error.log
 .env
 composer.lock
 package-lock.json
-
+vendor.zip
