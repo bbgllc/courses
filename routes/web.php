@@ -49,6 +49,6 @@ Route::get('/config-cache', function(){
 	Artisan::call('config:cache');
 });
 
-Route::get('/config-cache', function(){
+Route::get('/config-clear', function(){
 	Artisan::call('config:clear');
 });
