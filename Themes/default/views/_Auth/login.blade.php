@@ -70,15 +70,15 @@
                                     </div>
                                     <code class="d-block w-100">
                                         <div class="col-12 text-left mb-2">
-                                            Email: admin@burnsdigital.co <br />
+                                            Email: admin@burnsdigital.co <br/>
                                             Password: password <br />
                                         </div>
                                         <div class="col-12 text-left mb-2">
-                                            Email: author@burnsdigital.co <br />
+                                            Email: author@burnsdigital.co <br/>
                                             Password: password <br />
                                         </div>
                                         <div class="col-12 text-left">
-                                            Email: user@burnsdigital.co <br />
+                                            Email: user@burnsdigital.co <br/>
                                             Password: password <br />
                                         </div>
                                     </code>
