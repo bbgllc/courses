@@ -6,3 +6,5 @@
 [29-Apr-2018 09:32:20 CST6CDT] PHP Parse error:  syntax error, unexpected '?' in /home/burnsdig/public_html/courses/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php on line 233
 [29-Apr-2018 09:32:51 CST6CDT] PHP Parse error:  syntax error, unexpected '?' in /home/burnsdig/public_html/courses/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php on line 233
 [29-Apr-2018 10:24:39 CST6CDT] PHP Parse error:  syntax error, unexpected '?' in /home/burnsdig/public_html/courses/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php on line 233
+[11-Jul-2018 04:37:34 CST6CDT] PHP Parse error:  syntax error, unexpected '?' in /home/burnsdig/public_html/acadify/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php on line 233
+[11-Jul-2018 05:02:00 CST6CDT] PHP Fatal error:  Out of memory (allocated 845160448) (tried to allocate 20480 bytes) in phar:///usr/local/bin/composer.phar/src/Composer/DependencyResolver/Rule.php on line 76
