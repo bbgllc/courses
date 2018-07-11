@@ -54,9 +54,21 @@ Route::get('/config-clear', function(){
 });
 
 Route::get('/migrate-seed', function(){
-    Artisan::call('migrate:fresh --seed');
+    Artisan::call('migrate', [
+    '--force' => true,
+]);
 });
 
-Route::get('/passport', function(){
+Route::get('/db-seed', function(){
+    Artisan::call('db:seed', [
+    '--force' => true,
+]);
+});
+
+Route::get('/key-gen', function(){
+    Artisan::call('key:generate');
+});
+
+Route::get('/passport-install', function(){
     Artisan::call('passport:install');
 });

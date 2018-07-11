@@ -1,0 +1,7 @@
+
+RewriteEngine on 
+RewriteCond %{HTTP_REFERER} !^https?://(www\.)?your-site-here.com [NC] 
+RewriteCond %{HTTP_REFERER} !^https?://(www\.)?your-site-here.com.*$ [NC] 
+RewriteCond %{HTTP_REFERER} !^http?://(www\.)?your-site-here.com [NC] 
+RewriteCond %{HTTP_REFERER} !^http?://(www\.)?your-site-here.com.*$ [NC] 
+RewriteRule \.(gif|jpg|mp4|ogg|mp3)$ /messageforcurious [L]
