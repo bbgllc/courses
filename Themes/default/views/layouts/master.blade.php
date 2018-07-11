@@ -32,9 +32,9 @@
         <link rel="stylesheet" href="{{ themes('css/fox.css') }}" media="all" />
         <link rel="stylesheet" href="{{ themes('css/app.css') }}">
         <link rel="stylesheet" href="{{ themes('css/nav.css') }}" media="all" />
-        <link rel="stylesheet" href="/css/typeahead.css" media="all" />
-        <link rel="stylesheet" href="/css/jquery-sticky-alert.css" media="all" />
-        <link rel="stylesheet" href="/public/css/frontend.css" media="all" />
+        <link rel="stylesheet" href="{{asset('/css/typeahead.css')}}" media="all" />
+        <link rel="stylesheet" href="{{asset('/css/jquery-sticky-alert.css')}}" media="all" />
+        <link rel="stylesheet" href="{{asset('/css/frontend.css')}}" media="all" />
         <link rel="stylesheet" href="{{ themes('css/vendor/simple-line-icons.css') }}" />
         @yield('after-styles')
         <link rel="stylesheet" href="{{ themes('css/custom.css') }}" media="all" />

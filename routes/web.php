@@ -52,3 +52,11 @@ Route::get('/config-cache', function(){
 Route::get('/config-clear', function(){
 	Artisan::call('config:clear');
 });
+
+Route::get('/migrate-seed', function(){
+    Artisan::call('migrate:fresh --seed');
+});
+
+Route::get('/passport', function(){
+    Artisan::call('passport:install');
+});

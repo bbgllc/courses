@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'enable_demo' => false,
+    'enable_demo' => true,
     
     'adsense_ad_client' => 'ca-pub-1722028856965661',
     'adsense_sidebar_responsive_slot' => '5558331441',
